@@ -1,5 +1,7 @@
 # Todo list app
-A todo list app
+A todo list app 
+
+- It can fetch data from Api (extra feature)
 
 
 ### General steps to follow when creating a project

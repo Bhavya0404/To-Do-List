@@ -9,12 +9,12 @@ function renderList() {
     let li = document.createElement("li");
     li.innerHTML = `
         <input type="checkbox" id=${data.id} data-id="12" class="completed">
-        <label for=${data.id}>${data.text}</label>
+        <label for=${data.id}>${data.title}</label>
         <img src="bin.png" class="delete"  id =${data.id} />
         `;
     taskList.appendChild(li);
 
-    if (data.isDone == true) {
+    if (data.completed == true) {
       document.getElementById(data.id).checked = true;
     }
   });
@@ -38,8 +38,8 @@ function renderList() {
 function addTask(text) {
   const task = {
     id: Date.now(),
-    text: text,
-    isDone: false,
+    title: text,
+    completed: false,
   };
 
   tasks.push(task);
@@ -49,7 +49,7 @@ function addTask(text) {
 function toggleTask(taskId) {
   tasks.map((data) => {
     if (data.id == taskId) {
-      data.isDone = !data.isDone;
+      data.completed = !data.completed;
     }
   });
 
@@ -78,3 +78,15 @@ document.addEventListener("keypress", (event) => {
     enterKey(event);
   }
 });
+
+
+async function fetchToDos(){
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+    let todos = await res.json();
+    todos = todos.slice(0, 10);
+
+    tasks = todos;
+    renderList();
+}
+
+fetchToDos()
