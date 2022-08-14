@@ -81,12 +81,16 @@ document.addEventListener("keypress", (event) => {
 
 
 async function fetchToDos(){
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos');
-    let todos = await res.json();
-    todos = todos.slice(0, 10);
+    try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+        let todos = await res.json();
+        todos = todos.slice(0, 10);
 
-    tasks = todos;
-    renderList();
+        tasks = todos;
+        renderList();
+    } catch(error){
+        console.log("error", error);
+    }
 }
 
 fetchToDos()
