@@ -18,4 +18,3 @@ A todo list app
 	- deleteTodo
 	- checkTodo
 	- renderTodosList
-	- showNotification
